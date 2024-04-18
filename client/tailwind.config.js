@@ -1,20 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-  "./index.html",
-  "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       gridTemplateColumns: {
-        'c': '0fr 1fr'
+        c: "0fr 1fr",
       },
       gridTemplateRows: {
-        'c': '1fr 0fr'
+        c: "1fr 0fr",
       },
     },
   },
-  plugins: [
-    "prettier-plugin-tailwindcss"
-  ],
-}
+  plugins: [],
+};

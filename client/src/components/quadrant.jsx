@@ -24,7 +24,7 @@ export default function Quadrant() {
   };
 
   return (
-    <div className="overflow-hidden p-2 box-border h-full w-full max-w-[2000px] m-auto bg-stone-900 grid grid-cols-2 grid-rows-2 gap-2">
+    <div className="m-auto box-border grid h-full w-full max-w-[2000px] grid-cols-2 grid-rows-2 gap-2 overflow-hidden bg-stone-900 p-2">
       {renderSections(section_data)}
     </div>
   );
