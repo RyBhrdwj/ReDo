@@ -48,7 +48,7 @@ export default function Quadrant() {
         gridTemplateRows: gridTemplates[focus].rows,
         gap: focus ? "0" : "0.5rem",
       }}
-    >
+    > 
       {renderSections(section_data)}
     </div>
   );
