@@ -5,8 +5,16 @@ export default {
   "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        'c': '0fr 1fr'
+      },
+      gridTemplateRows: {
+        'c': '1fr 0fr'
+      },
+    },
   },
-  plugins: [],
+  plugins: [
+    "prettier-plugin-tailwindcss"
+  ],
 }
-

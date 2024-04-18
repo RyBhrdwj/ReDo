@@ -1,8 +1,5 @@
-import DashboardComponent from '../components/dashboard'
+import DashboardComponent from "../components/dashboard";
 
 export default function Dashboard() {
-
-  return (
-    <DashboardComponent/>
-  )
+  return <DashboardComponent />;
 }
