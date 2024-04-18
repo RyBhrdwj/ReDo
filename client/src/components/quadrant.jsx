@@ -9,36 +9,46 @@ export default function Quadrant() {
     { title: "NONE", color: "bg-green-500" },
   ];
 
-  // define grid format presets
-  const gridFormat = [
-    "grid-cols-2 grid-rows-2 gap-2",
-    "grid-cols-Preset1 grid-rows-Preset2",
-    "grid-cols-Preset2 grid-rows-Preset2",
-    "grid-cols-Preset1 grid-rows-Preset1",
-    "grid-cols-Preset2 grid-rows-Preset1",
+  const gridTemplates = [
+    { columns: "1fr 1fr", rows: "1fr 1fr" },
+    { columns: "1fr 0fr", rows: "1fr 0fr" },
+    { columns: "0fr 1fr", rows: "1fr 0fr" },
+    { columns: "1fr 0fr", rows: "0fr 1fr" },
+    { columns: "0fr 1fr", rows: "0fr 1fr" },
   ];
 
-  const [focus, setFocus] = useState(0); // 0 -> no focus ; 1 -> important and urgent ; 2 -> important ; 3 -> urgent ; 4 -> none
-  console.log(focus);
+  const [focus, setFocus] = useState(0);
+
+  const handleSectionClick = (index) => {
+    setFocus(focus ? 0 : index + 1);
+  };
 
   const renderSections = (data) => {
     return data.map((section, index) => {
       return (
         <Section
-          key={index + 1}
+          key={index}
           title={section.title}
           color={section.color}
-          onClick={() => setFocus(focus ? 0 : index + 1)}
+          onClick={() => handleSectionClick(index)}
         />
       );
     });
   };
 
   const style =
-    "m-auto box-border grid h-full w-full max-w-[2000px] overflow-hidden bg-stone-900 p-2 ";
+    "m-auto box-border grid h-[100vh] w-[100vw] max-w-[2000px] overflow-hidden bg-stone-900 p-2";
+  const transition = "transition-all duration-[300ms] ease-in-out";
 
   return (
-    <div className={style + gridFormat[focus]}>
+    <div
+      className={`${style} ${transition}`}
+      style={{
+        gridTemplateColumns: gridTemplates[focus].columns,
+        gridTemplateRows: gridTemplates[focus].rows,
+        gap: focus ? "0" : "0.5rem",
+      }}
+    >
       {renderSections(section_data)}
     </div>
   );
