@@ -4,10 +4,12 @@ export default {
   theme: {
     extend: {
       gridTemplateColumns: {
-        c: "0fr 1fr",
+        Preset1: "1fr 0fr",
+        Preset2: "0fr 1fr",
       },
       gridTemplateRows: {
-        c: "1fr 0fr",
+        Preset1: "0fr 1fr",
+        Preset2: "1fr 0fr",
       },
     },
   },
