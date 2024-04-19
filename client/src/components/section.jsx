@@ -5,7 +5,7 @@ export default function Section({ title, color, onClick }) {
 
   const { tasks, dispatch } = useContext(TasksContext);
   console.log(tasks.tasks);
-  const data = tasks.tasks;
+  const data = tasks.tasks || [];
 
   return (
     <div
