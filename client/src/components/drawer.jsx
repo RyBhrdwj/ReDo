@@ -85,7 +85,7 @@ export default function MiniDrawer() {
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerToggle} sx = {{color: "white"}}>
-            { open ? <ChevronLeftIcon /> : <MenuIcon /> }
+            { open ? <ChevronLeftIcon /> : <ChevronRightIcon /> }
           </IconButton>
         </DrawerHeader>
         <Divider />
@@ -123,6 +123,7 @@ export default function MiniDrawer() {
                   minHeight: 48,
                   justifyContent: open ? "initial" : "center",
                   px: 2.5,
+                  borderRadius: "8888px"
                 }}
               >
                 <ListItemIcon

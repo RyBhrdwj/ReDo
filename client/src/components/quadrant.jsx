@@ -1,12 +1,44 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Section from "./section";
+import { TasksContext } from "./context/tasksContext";
 
 export default function Quadrant() {
+  const {
+    state1,
+    setState1,
+    state2,
+    setState2,
+    state3,
+    setState3,
+    state4,
+    setState4,
+  } = useContext(TasksContext);
+
   const section_data = [
-    { title: "IMPORTANT AND URGENT", color: "bg-red-500" },
-    { title: "IMPORTANT", color: "bg-yellow-500" },
-    { title: "URGENT", color: "bg-blue-500" },
-    { title: "NONE", color: "bg-green-500" },
+    {
+      title: "IMPORTANT AND URGENT",
+      color: "bg-red-500",
+      tasks: state1,
+      setTasks: setState1,
+    },
+    {
+      title: "IMPORTANT",
+      color: "bg-yellow-500",
+      tasks: state2,
+      setTasks: setState2,
+    },
+    {
+      title: "URGENT",
+      color: "bg-blue-500",
+      tasks: state3,
+      setTasks: setState3,
+    },
+    {
+      title: "NONE",
+      color: "bg-green-500",
+      tasks: state4,
+      setTasks: setState4,
+    },
   ];
 
   const gridTemplates = [
@@ -30,6 +62,8 @@ export default function Quadrant() {
           key={index}
           title={section.title}
           color={section.color}
+          tasks={section.tasks}
+          setTasks={section.setTasks}
           onClick={() => handleSectionClick(index)}
         />
       );
@@ -48,7 +82,7 @@ export default function Quadrant() {
         gridTemplateRows: gridTemplates[focus].rows,
         gap: focus ? "0" : "0.5rem",
       }}
-    > 
+    >
       {renderSections(section_data)}
     </div>
   );
