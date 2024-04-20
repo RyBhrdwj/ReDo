@@ -9,7 +9,7 @@ class taskController {
     fetchAllTasks = async (req, res) => {
         try {
             const tasks = await this.task.readAll();
-            res.send(tasks);
+            res.json(tasks);
         } catch (err) {
             res.status(500).send(err);
         }
