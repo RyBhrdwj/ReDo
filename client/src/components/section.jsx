@@ -1,9 +1,12 @@
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { TasksContext } from "../context/tasksContext";
 import { v4 as uuidv4 } from "uuid";
-import SectionCard from "./SectionCard";
+import TaskCard from "./TaskCard";
+import CreateTaskCard from "./CreateTaskCard";
+import { PlusIcon } from "@heroicons/react/24/solid";
 
 export default function Section({ title, color, flag, onClick }) {
+  const [showCreateTask, setShowCreateTask] = useState(false);
   const { tasks, dispatch } = useContext(TasksContext);
   const data = tasks || [];
 
@@ -11,31 +14,34 @@ export default function Section({ title, color, flag, onClick }) {
 
   return (
     <div
-      className={` border-1 relative min-h-0 min-w-0 rounded-lg border-white ${color} overflow-y-auto overflow-x-clip`}
+      className={` border-1 relative min-h-0 min-w-0 rounded-xl border-white ${color} overflow-hidden`}
       onClick={onClick}
     >
       <h1 className=" text-center text-4xl font-bold text-stone-900">
         {title}
       </h1>
+      <div className="mx-auto h-[85%] w-[99%] overflow-hidden rounded-xl bg-white/5 p-0.5">
+        <div className="h-full w-full overflow-y-auto overflow-x-hidden">
+          <CreateTaskCard section={flag} show={showCreateTask} />
+          {filteredData.map((task) => (
+            <TaskCard key={task._id} task={task} />
+          ))}
+        </div>
+      </div>
       <button
-        className=" absolute bottom-8 right-8 z-10 h-10 w-10 rounded-full bg-blue-300 p-2"
+        className={
+          "absolute bottom-8 right-8 z-10 rounded-full border-2 border-solid border-white p-2 " +
+          (showCreateTask ? "bg-red-500" : "bg-green-500")
+        }
         onClick={(e) => {
           e.stopPropagation();
-          console.log("Add task clicked");
-          dispatch({
-            type: "ADD_TASK",
-            payload: {
-              name: "New Task",
-              flag: flag,
-            },
-          });
+          setShowCreateTask(!showCreateTask);
         }}
       >
-        +
+        <PlusIcon
+          className={`h-7 w-7 text-white transition-all duration-300 ${showCreateTask ? "rotate-45" : "rotate-0"}`}
+        />
       </button>
-      {filteredData.map((task) => (
-        <SectionCard key={task._id} task={task} />
-      ))}
     </div>
   );
 }

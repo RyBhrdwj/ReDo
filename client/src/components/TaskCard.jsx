@@ -1,14 +1,14 @@
 import { useState, useContext } from "react";
 import { TasksContext } from "../context/tasksContext";
 
-export default function SectionCard({ task }) {
+export default function TaskCard({ task }) {
   const { dispatch } = useContext(TasksContext);
 
   const handleDelete = (e) => {
     e.stopPropagation();
     dispatch({ type: "DELETE_TASK", payload: task._id });
   };
-  const [mode, setMode] = useState("VIEW"); // view, create, edit
+  const [mode, setMode] = useState("VIEW"); // view, edit
 
   switch (mode) {
     case "VIEW":

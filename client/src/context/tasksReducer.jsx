@@ -16,7 +16,7 @@ export default function tasksReducer(state, action) {
       api.postTask(action.payload);
       return {
         ...state,
-        tasks: [...state.tasks, action.payload],
+        tasks: [action.payload, ...state.tasks],
       };
     case "DELETE_TASK":
       api.deleteTask(action.payload);
