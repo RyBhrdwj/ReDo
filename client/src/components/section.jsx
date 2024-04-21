@@ -17,12 +17,16 @@ export default function Section({ title, color, flag, onClick }) {
       className={` border-1 relative min-h-0 min-w-0 rounded-xl border-white ${color} overflow-hidden`}
       onClick={onClick}
     >
-      <h1 className=" text-center text-4xl font-bold text-stone-900">
+      <h1 className=" text-center text-3xl font-bold text-stone-900">
         {title}
       </h1>
-      <div className="mx-auto h-[85%] w-[99%] overflow-hidden rounded-xl bg-white/5 p-0.5">
-        <div className="h-full w-full overflow-y-auto overflow-x-hidden">
-          <CreateTaskCard section={flag} show={showCreateTask} />
+      <div className="mx-auto h-[90%] w-[99%] overflow-hidden rounded-xl border-2 border-solid border-white/30 bg-white/10 p-0.5">
+        <CreateTaskCard
+          section={flag}
+          show={showCreateTask}
+          setShow={setShowCreateTask}
+        />
+        <div className=" h-full w-full overflow-y-auto overflow-x-hidden">
           {filteredData.map((task) => (
             <TaskCard key={task._id} task={task} />
           ))}

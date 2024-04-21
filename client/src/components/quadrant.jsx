@@ -13,17 +13,17 @@ export default function Quadrant() {
     },
     {
       title: "IMPORTANT",
-      color: "bg-yellow-500",
+      color: "bg-lime-500",
       flag: 2,
     },
     {
       title: "URGENT",
-      color: "bg-blue-500",
+      color: "bg-indigo-500",
       flag: 1,
     },
     {
       title: "NONE",
-      color: "bg-green-500",
+      color: "bg-neutral-500",
       flag: 0,
     },
   ];

@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { TasksContext } from "../context/tasksContext";
 // import DatetimePicker from 'react-datetime-picker';
 
-export default function CreateTaskCard({ section, show }) {
+export default function CreateTaskCard({ section, show, setShow }) {
   const { dispatch, focusSection } = useContext(TasksContext);
   const [taskName, setTaskName] = useState("");
   // const [dateTime, setDateTime] = useState(new Date());
@@ -21,6 +21,7 @@ export default function CreateTaskCard({ section, show }) {
       alert("Please enter a task name");
       return;
     }
+    setShow(false);
     dispatch({
       type: "ADD_TASK",
       payload: {
@@ -38,7 +39,7 @@ export default function CreateTaskCard({ section, show }) {
   return (
     show && (
       <div
-        className=" relative w-full rounded-lg bg-white/10 p-2"
+        className=" relative m-2 rounded-lg bg-white/10 p-2"
         onClick={(e) => e.stopPropagation()}
       >
         <input
@@ -53,7 +54,7 @@ export default function CreateTaskCard({ section, show }) {
                 value={dateTime}
             /> */}
         <button
-          className="duration-2 right-16 mt-2 rounded-lg bg-white/60 p-2 font-semibold text-black outline outline-2 outline-white/70 transition-all ease-in-out hover:rounded-3xl  hover:bg-green-500 hover:text-white"
+          className="duration-2 right-16 mt-3 rounded-lg bg-white/60 p-2 font-semibold text-black outline outline-2 outline-white/70 transition-all ease-in-out hover:rounded-3xl  hover:bg-green-500 hover:text-white"
           onClick={(e) => {
             handleAddTask(e);
           }}

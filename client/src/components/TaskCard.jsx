@@ -17,7 +17,7 @@ export default function TaskCard({ task }) {
           className={`m-2 flex flex-col items-center justify-center rounded-lg bg-red-100 p-2 transition-transform hover:scale-[103%]`}
           onClick={(e) => handleDelete(e)}
         >
-          <h1 className="text-xl text-black">{task.name}</h1>
+          <h1 className=" text-lg text-black">{task.name}</h1>
         </div>
       );
 
