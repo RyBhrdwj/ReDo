@@ -20,7 +20,7 @@ export default function Section({ title, color, flag, onClick }) {
       <h1 className=" text-center text-3xl font-bold text-stone-900">
         {title}
       </h1>
-      <div className="mx-auto h-[90%] w-[99%] overflow-hidden rounded-xl border-2 border-solid border-white/30 bg-white/10 p-0.5">
+      <div className="mx-auto h-[90%] w-[99%] overflow-hidden rounded-xl bg-white/10">
         <CreateTaskCard
           section={flag}
           show={showCreateTask}
@@ -34,7 +34,7 @@ export default function Section({ title, color, flag, onClick }) {
       </div>
       <button
         className={
-          "absolute bottom-8 right-8 z-10 rounded-full border-2 border-solid border-white p-2 " +
+          "absolute bottom-8 right-8 z-10 rounded-full border-2 border-solid border-white p-2 hover:brightness-95 " +
           (showCreateTask ? "bg-red-500" : "bg-green-500")
         }
         onClick={(e) => {
