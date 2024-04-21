@@ -1,7 +1,10 @@
 import { useState, useContext } from "react";
 import Section from "./section";
+import { TasksContext } from "../context/tasksContext";
 
 export default function Quadrant() {
+  const { dispatch, focusSection, tasks } = useContext(TasksContext);
+
   const section_data = [
     {
       title: "IMPORTANT AND URGENT",
@@ -33,10 +36,9 @@ export default function Quadrant() {
     { columns: "0fr 1fr", rows: "0fr 1fr" },
   ];
 
-  const [focus, setFocus] = useState(0);
-
   const handleSectionClick = (index) => {
-    setFocus(focus ? 0 : index + 1);
+    const newFocus = focusSection === index + 1 ? 0 : index + 1;
+    dispatch({ type: "SET_FOCUS_SECTION", payload: newFocus });
   };
 
   const renderSections = (data) => {
@@ -61,9 +63,9 @@ export default function Quadrant() {
     <div
       className={`${style} ${transition}`}
       style={{
-        gridTemplateColumns: gridTemplates[focus].columns,
-        gridTemplateRows: gridTemplates[focus].rows,
-        gap: focus ? "0" : "0.5rem",
+        gridTemplateColumns: gridTemplates[focusSection].columns,
+        gridTemplateRows: gridTemplates[focusSection].rows,
+        gap: focusSection ? "0" : "0.5rem",
       }}
     >
       {renderSections(section_data)}

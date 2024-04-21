@@ -2,14 +2,19 @@ import { createContext, useState, useEffect, useReducer } from "react";
 import tasksReducer from "./tasksReducer";
 import api from "./api";
 
+const { getAllTasks } = api;
+
 export const TasksContext = createContext([]);
 
 const TasksContextProvider = ({ children }) => {
-  const [tasks, dispatch] = useReducer(tasksReducer, []);
+  const initialState = {
+    tasks: [],
+    focusSection: 0,
+  };
+  const [state, dispatch] = useReducer(tasksReducer, initialState);
 
   useEffect(() => {
-    api
-      .getAllTasks()
+    getAllTasks()
       .then((data) => {
         dispatch({ type: "GET_TASKS", payload: data });
       })
@@ -21,7 +26,8 @@ const TasksContextProvider = ({ children }) => {
   return (
     <TasksContext.Provider
       value={{
-        tasks,
+        tasks: state.tasks,
+        focusSection: state.focusSection,
         dispatch,
       }}
     >

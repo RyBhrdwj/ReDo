@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import { TasksContext } from "../context/tasksContext";
 import { v4 as uuidv4 } from "uuid";
+import SectionCard from "./SectionCard";
 
 export default function Section({ title, color, flag, onClick }) {
   const { tasks, dispatch } = useContext(TasksContext);
-  const data = tasks.tasks || [];
+  const data = tasks || [];
 
   const filteredData = data.filter((task) => task.flag === flag);
 
@@ -33,18 +34,7 @@ export default function Section({ title, color, flag, onClick }) {
         +
       </button>
       {filteredData.map((task) => (
-        <div
-          key={task._id}
-          onClick={(e) => {
-            console.log(task._id);
-            e.stopPropagation();
-            dispatch({ type: "DELETE_TASK", payload: task._id });
-          }}
-          className=" m-4 rounded-xl bg-red-100 p-2 text-center transition-transform hover:scale-[103%] "
-        >
-          {task.name}
-        </div>
-        // You can render other task details here as needed
+        <SectionCard key={task._id} task={task} />
       ))}
     </div>
   );

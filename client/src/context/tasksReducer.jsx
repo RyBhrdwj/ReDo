@@ -2,6 +2,11 @@ import api from "./api";
 
 export default function tasksReducer(state, action) {
   switch (action.type) {
+    case "SET_FOCUS_SECTION":
+      return {
+        ...state,
+        focusSection: action.payload,
+      };
     case "GET_TASKS":
       return {
         ...state,
