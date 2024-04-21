@@ -1,3 +1,5 @@
+import api from "./api";
+
 export default function tasksReducer(state, action) {
   switch (action.type) {
     case "GET_TASKS":
@@ -6,21 +8,13 @@ export default function tasksReducer(state, action) {
         tasks: action.payload,
       };
     case "ADD_TASK":
-      fetch("http://127.0.0.1:3001/api/post", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(action.payload),
-      });
+      api.postTask(action.payload);
       return {
         ...state,
         tasks: [...state.tasks, action.payload],
       };
     case "DELETE_TASK":
-      fetch("http://127.0.0.1:3001/api/delete/" + action.payload, {
-        method: "DELETE",
-      });
+      api.deleteTask(action.payload);
       // Todo: Handle response from server here
       return {
         ...state,

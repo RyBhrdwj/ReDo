@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { TasksContext } from "./context/tasksContext";
-import { v4 as uuidv4 } from 'uuid';
+import { TasksContext } from "../context/tasksContext";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Section({ title, color, flag, onClick }) {
   const { tasks, dispatch } = useContext(TasksContext);
@@ -40,7 +40,7 @@ export default function Section({ title, color, flag, onClick }) {
             e.stopPropagation();
             dispatch({ type: "DELETE_TASK", payload: task._id });
           }}
-          className=" m-4 rounded-xl bg-red-200 p-2 text-center transition-transform hover:scale-[103%] "
+          className=" m-4 rounded-xl bg-red-100 p-2 text-center transition-transform hover:scale-[103%] "
         >
           {task.name}
         </div>

@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect, useReducer } from "react";
 import tasksReducer from "./tasksReducer";
+import api from "./api";
 
 export const TasksContext = createContext([]);
 
@@ -7,13 +8,8 @@ const TasksContextProvider = ({ children }) => {
   const [tasks, dispatch] = useReducer(tasksReducer, []);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:3001/api/fetch")
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Failed to fetch tasks");
-        }
-        return res.json();
-      })
+    api
+      .getAllTasks()
       .then((data) => {
         dispatch({ type: "GET_TASKS", payload: data });
       })
