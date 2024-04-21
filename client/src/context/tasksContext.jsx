@@ -21,7 +21,7 @@ const TasksContextProvider = ({ children }) => {
       .catch((error) => {
         console.error("Error fetching tasks:", error);
       });
-  }, []);
+  }, [state.tasks]);
 
   return (
     <TasksContext.Provider
