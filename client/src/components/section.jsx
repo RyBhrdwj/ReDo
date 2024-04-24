@@ -1,6 +1,5 @@
 import { useState, useContext } from "react";
 import { TasksContext } from "../context/tasksContext";
-import { v4 as uuidv4 } from "uuid";
 import TaskCard from "./TaskCard";
 import CreateTaskCard from "./CreateTaskCard";
 import { PlusIcon } from "@heroicons/react/24/solid";

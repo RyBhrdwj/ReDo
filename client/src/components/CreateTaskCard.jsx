@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
 import { TasksContext } from "../context/tasksContext";
+import ObjectID from "bson-objectid";
+
 // import DatetimePicker from 'react-datetime-picker';
 
 export default function CreateTaskCard({ section, show, setShow }) {
-  const { dispatch, focusSection } = useContext(TasksContext);
+  const { dispatch } = useContext(TasksContext);
   const [taskName, setTaskName] = useState("");
   // const [dateTime, setDateTime] = useState(new Date());
 
@@ -25,6 +27,7 @@ export default function CreateTaskCard({ section, show, setShow }) {
     dispatch({
       type: "ADD_TASK",
       payload: {
+        _id: ObjectID(),
         name: taskName.trim(),
         flag: section,
         // datetime: dateTime

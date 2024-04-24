@@ -14,6 +14,7 @@ const TasksContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(tasksReducer, initialState);
 
   useEffect(() => {
+    console.log("Fetching tasks...");
     getAllTasks()
       .then((data) => {
         dispatch({ type: "GET_TASKS", payload: data });
@@ -21,7 +22,7 @@ const TasksContextProvider = ({ children }) => {
       .catch((error) => {
         console.error("Error fetching tasks:", error);
       });
-  }, [state.tasks]);
+  }, []); // Initially fetch tasks
 
   return (
     <TasksContext.Provider
