@@ -49,6 +49,7 @@ export default function CreateTaskCard({ section }) {
         onClick={(e) => e.stopPropagation()}
       >
         <input
+          autoFocus
           type="text"
           placeholder="Enter task name"
           value={taskName}
