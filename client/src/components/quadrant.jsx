@@ -3,6 +3,7 @@ import Section from "./section";
 import { TasksContext } from "../context/tasksContext";
 
 export default function Quadrant() {
+  
   const { dispatch, focusSection, tasks } = useContext(TasksContext);
 
   const section_data = [

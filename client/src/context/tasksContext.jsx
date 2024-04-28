@@ -7,6 +7,7 @@ const { getAllTasks } = api;
 export const TasksContext = createContext([]);
 
 const TasksContextProvider = ({ children }) => {
+  
   const initialState = {
     tasks: [],
     focusSection: 0,

@@ -5,7 +5,7 @@ import CreateTaskCard from "./CreateTaskCard";
 import { PlusIcon } from "@heroicons/react/24/solid";
 
 export default function Section({ title, color, flag, onClick }) {
-  // const [showCreateTask, setShowCreateTask] = useState(false);
+
   const { tasks, showCreateTaskSection, dispatch } = useContext(TasksContext);
   const data = tasks || [];
 
