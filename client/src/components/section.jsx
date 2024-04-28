@@ -5,8 +5,8 @@ import CreateTaskCard from "./CreateTaskCard";
 import { PlusIcon } from "@heroicons/react/24/solid";
 
 export default function Section({ title, color, flag, onClick }) {
-  const [showCreateTask, setShowCreateTask] = useState(false);
-  const { tasks, dispatch } = useContext(TasksContext);
+  // const [showCreateTask, setShowCreateTask] = useState(false);
+  const { tasks, showCreateTaskSection, dispatch } = useContext(TasksContext);
   const data = tasks || [];
 
   const filteredData = data.filter((task) => task.flag === flag);
@@ -20,11 +20,11 @@ export default function Section({ title, color, flag, onClick }) {
         {title}
       </h1>
       <div className="mx-auto h-[90%] w-[99%] overflow-hidden rounded-xl bg-white/10">
-        <CreateTaskCard
-          section={flag}
-          show={showCreateTask}
-          setShow={setShowCreateTask}
-        />
+        {
+          showCreateTaskSection == flag ? (
+            <CreateTaskCard section={flag} />
+          ) : null
+        }
         <div className=" h-full w-full overflow-y-auto overflow-x-hidden">
           {filteredData.map((task) => (
             <TaskCard key={task._id} task={task} />
@@ -34,15 +34,16 @@ export default function Section({ title, color, flag, onClick }) {
       <button
         className={
           "absolute bottom-8 right-8 z-10 rounded-full border-2 border-solid border-white p-2 hover:brightness-95 " +
-          (showCreateTask ? "bg-red-500" : "bg-green-500")
+          (showCreateTaskSection == flag ? "bg-red-500" : "bg-green-500")
         }
         onClick={(e) => {
           e.stopPropagation();
-          setShowCreateTask(!showCreateTask);
+
+          dispatch({ type: "SET_SHOW_CREATE_TASK", payload: showCreateTaskSection == flag ? 0 : flag});
         }}
       >
         <PlusIcon
-          className={`h-7 w-7 text-white transition-all duration-300 ${showCreateTask ? "rotate-45" : "rotate-0"}`}
+          className={`h-7 w-7 text-white transition-all duration-300 ${showCreateTaskSection == flag ? "rotate-45" : "rotate-0"}`}
         />
       </button>
     </div>

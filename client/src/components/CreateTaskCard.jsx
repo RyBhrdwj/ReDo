@@ -4,7 +4,7 @@ import ObjectID from "bson-objectid";
 
 // import DatetimePicker from 'react-datetime-picker';
 
-export default function CreateTaskCard({ section, show, setShow }) {
+export default function CreateTaskCard({ section }) {
   const { dispatch } = useContext(TasksContext);
   const [taskName, setTaskName] = useState("");
   // const [dateTime, setDateTime] = useState(new Date());
@@ -18,12 +18,15 @@ export default function CreateTaskCard({ section, show, setShow }) {
   // };
 
   const handleAddTask = (e) => {
+
     e.stopPropagation();
+
     if (!taskName.trim()) {
+
       alert("Please enter a task name");
       return;
     }
-    setShow(false);
+
     dispatch({
       type: "ADD_TASK",
       payload: {
@@ -34,13 +37,13 @@ export default function CreateTaskCard({ section, show, setShow }) {
       },
     });
 
-    // Reset input fields after adding task
+    dispatch({ type: "SET_SHOW_CREATE_TASK", payload: 0 })
+
     setTaskName("");
     // setDateTime(new Date());
   };
 
   return (
-    show && (
       <div
         className=" relative m-2 rounded-lg bg-white/10 p-2"
         onClick={(e) => e.stopPropagation()}
@@ -65,6 +68,5 @@ export default function CreateTaskCard({ section, show, setShow }) {
           Add Task
         </button>
       </div>
-    )
   );
 }

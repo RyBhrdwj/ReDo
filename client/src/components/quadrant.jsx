@@ -9,22 +9,22 @@ export default function Quadrant() {
     {
       title: "IMPORTANT AND URGENT",
       color: "bg-red-500",
-      flag: 3,
+      flag: 4,
     },
     {
       title: "IMPORTANT",
       color: "bg-lime-500",
-      flag: 2,
+      flag: 3,
     },
     {
       title: "URGENT",
       color: "bg-indigo-500",
-      flag: 1,
+      flag: 2,
     },
     {
       title: "NONE",
       color: "bg-neutral-500",
-      flag: 0,
+      flag: 1,
     },
   ];
 
@@ -48,7 +48,7 @@ export default function Quadrant() {
           key={index}
           title={section.title}
           color={section.color}
-          flag={section.flag}
+          flag={index + 1}
           onClick={() => handleSectionClick(index)}
         />
       );
