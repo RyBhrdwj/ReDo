@@ -9,4 +9,5 @@ const recurringTaskSchema = new mongoose.Schema(
 );
 
 const recurringTask = mongoose.model('RecurringTask', recurringTaskSchema);
+
 module.exports = recurringTask;

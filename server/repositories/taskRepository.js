@@ -1,5 +1,5 @@
-const Task = require('../models/task');
-const crudRepo = require('./crud');
+const Task = require('../models/taskModel');
+const crudRepo = require('./crudRepository');
 
 class taskRepo extends crudRepo {
     constructor() {
