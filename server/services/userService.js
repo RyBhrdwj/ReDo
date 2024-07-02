@@ -39,6 +39,14 @@ class userService {
     const user = await this.user.create(userData);
     return user;
   };
+
+  signinUser = async (username, password) => {
+    const user = username.includes("@")
+      ? await this.user.findUserByEmail(username)
+      : await this.user.findUserbyUsername(username);
+
+    return user && user.password === password ? user : "Invalid credentials";
+  };
 }
 
 module.exports = userService;
