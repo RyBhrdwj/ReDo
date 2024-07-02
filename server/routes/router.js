@@ -3,8 +3,8 @@ const taskController = require("../controllers/taskController");
 const userController = require("../controllers/userController");
 const router = express.Router();
 
-// router.post("/register", userController.register);
-// router.post("/login", userController.login);
+router.post("/signup", userController.signup);
+// router.post("/signin", userController.login);
 // router.post("/logout", userController.logout);
 // router.get("/me", userController.me);
 

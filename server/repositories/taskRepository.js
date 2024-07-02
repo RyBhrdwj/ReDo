@@ -1,7 +1,7 @@
 const Task = require('../models/taskModel');
-const crudRepo = require('./crudRepository');
+const crudRepository = require('./crudRepository');
 
-class taskRepo extends crudRepo {
+class taskRepository extends crudRepository {
     constructor() {
         super(Task);
     }
@@ -48,4 +48,4 @@ class taskRepo extends crudRepo {
     }
 }
 
-module.exports = taskRepo;
+module.exports = taskRepository;
