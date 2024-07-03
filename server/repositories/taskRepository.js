@@ -1,51 +1,59 @@
-const Task = require('../models/taskModel');
-const crudRepository = require('./crudRepository');
+const Task = require("../models/taskModel");
+const crudRepository = require("./crudRepository");
 
 class taskRepository extends crudRepository {
-    constructor() {
-        super(Task);
+  constructor() {
+    super(Task);
+  }
+
+  fetchTasksByUserId = async (userId) => {
+    try {
+      const tasks = await this.model.find({ user_id: userId });
+      return tasks;
+    } catch (error) {
+      console.log("crud error : " + error);
+      throw error;
     }
+  };
 
-    updateTask = async (id, data) => {
-        try {
-            const task = await this.model.findByIdAndUpdate(id, data, { 
-                new: true,
-                overwrite: true,
-                runValidators: true
-            });
+  updateTask = async (id, data) => {
+    try {
+      const task = await this.model.findByIdAndUpdate(id, data, {
+        new: true,
+        overwrite: true,
+        runValidators: true,
+      });
 
-            return task;
-
-        } catch (error) {
-            console.log("crud error : " + error);
-            throw error;
-        }
+      return task;
+    } catch (error) {
+      console.log("crud error : " + error);
+      throw error;
     }
+  };
 
-    updateTimeSpent = async (id, time) => {
-        try {
-            const task = await this.model.findById(id);
-            task.time_spent = time;
-            await task.save();
-            return task;
-        } catch (error) {
-            console.log("crud error : " + error);
-            throw error;
-        }
+  updateTimeSpent = async (id, time) => {
+    try {
+      const task = await this.model.findById(id);
+      task.time_spent = time;
+      await task.save();
+      return task;
+    } catch (error) {
+      console.log("crud error : " + error);
+      throw error;
     }
+  };
 
-    toggleComplete = async (id) => {
-        try {
-            const task = await this.model.findById(id);
-            task.completed = !task.completed;
-            await task.save();
-            return task;
-        }
-        catch (error) {
-            console.log("crud error : " + error);
-            throw error;
-        }
+  toggleComplete = async (id) => {
+    try {
+      const task = await this.model.findById(id);
+      task.completed = !task.completed;
+      await task.save();
+      return task;
+    } catch (error) {
+      console.log("crud error : " + error);
+      throw error;
     }
+  };
 }
 
 module.exports = taskRepository;

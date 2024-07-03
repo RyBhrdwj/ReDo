@@ -45,7 +45,7 @@ class userService {
       ? await this.user.findUserByEmail(username)
       : await this.user.findUserbyUsername(username);
 
-    return user && user.password === password ? user : "Invalid credentials";
+    return user && user.password === password ? user : null;
   };
 }
 

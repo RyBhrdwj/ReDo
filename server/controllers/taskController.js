@@ -14,6 +14,17 @@ class taskController {
     }
   };
 
+  fetchTasksByUserId = async (req, res) => {
+    const userId = req.user.id;
+
+    try {
+      const tasks = await this.task.fetchTasksByUserId(userId);
+      res.json(tasks);
+    } catch (err) {
+      res.status(500).send(err);
+    }
+  }
+
   postTask = async (req, res) => {
     try {
       const task = await this.task.create(req.body);

@@ -1,4 +1,5 @@
 const userService = require("../services/userService");
+const { generateToken } = require("../utils/jwtUtil");
 
 class UserController {
   constructor() {
@@ -45,7 +46,10 @@ class UserController {
       if (!user) {
         return res.status(400).send("Invalid username / email or password");
       }
-      res.send(user);
+
+      const token = generateToken({ id: user._id, username: user.username });
+
+      res.send({ user, token });
     } catch (error) {
       res.status(500).send(error + "An error occurred while signing in");
     }

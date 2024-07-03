@@ -1,6 +1,7 @@
 const express = require("express");
 const taskController = require("../controllers/taskController");
 const userController = require("../controllers/userController");
+const authMiddleware = require("../middlewares/authMiddleware");
 const router = express.Router();
 
 router.post("/signup", userController.signup);
@@ -8,7 +9,9 @@ router.post("/signin", userController.signin);
 // router.post("/logout", userController.logout);
 // router.get("/me", userController.me);
 
-router.get("/fetch", taskController.fetchAllTasks);
+router.get("/fetch", authMiddleware, taskController.fetchTasksByUserId);
+
+// TODO: Add fetchTaskbyUserId
 router.post("/post", taskController.postTask);
 router.put("/update/:id", taskController.updateTask);
 router.delete("/delete/:id", taskController.deleteTask);
